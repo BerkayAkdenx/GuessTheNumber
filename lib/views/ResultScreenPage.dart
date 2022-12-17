@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:guess_the_number/views/GuessScreenPage.dart';
 
 class ResultScreenPage extends StatefulWidget {
-  const ResultScreenPage({Key? key}) : super(key: key);
+  late bool result;// data transfer
+
+  ResultScreenPage(this.result);
 
   @override
   State<ResultScreenPage> createState() => _ResultScreenPageState();
@@ -19,8 +21,8 @@ class _ResultScreenPageState extends State<ResultScreenPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset("images/mutlu_resim.png"),
-            Text("You Win",
+            widget.result ? Image.asset("images/happy_photo.png"):Image.asset("images/sad_photo.png"),//if widget.result is true ,read firt string data
+           Text( widget.result ?  "You Win" : "You Lose",
                 style: TextStyle(color: Colors.black54, fontSize: 36)),
             SizedBox(
               width: 200,

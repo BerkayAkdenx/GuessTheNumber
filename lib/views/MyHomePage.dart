@@ -13,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mainpage"),
+        title: Text("Home"),
       ),
       body: Center(
         child: Column(
@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text("Guessing Game",
                 style: TextStyle(color: Colors.black54, fontSize: 36)),
-            Image.asset("images/zar_resim.png"),
+            Image.asset("images/dice_photo.png"),
             SizedBox(
               width: 200,
               height: 50,

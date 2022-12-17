@@ -12,9 +12,15 @@ class GuessScreenPage extends StatefulWidget {
 class _GuessScreenPageState extends State<GuessScreenPage> {
   @override
   var counter = 5;
+  var tip = "";
+  int randomNumber = 2;
+  var tfGuess = TextEditingController();
 
-  var randomNumber = 2;
-  var tfController;
+  void initState() {
+    super.initState();
+    randomNumber = Random().nextInt(101);
+    print(randomNumber);
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +34,14 @@ class _GuessScreenPageState extends State<GuessScreenPage> {
             Text("health : $counter",
                 style: TextStyle(color: Colors.redAccent, fontSize: 36)),
             Text(
-              "Tip : increase/decrease",
+              "Tip : $tip",
               style: TextStyle(color: Colors.black38, fontSize: 24),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                 keyboardType: TextInputType.number,
-                controller: tfController,
+                controller: tfGuess,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
                   filled: true,
@@ -49,10 +55,30 @@ class _GuessScreenPageState extends State<GuessScreenPage> {
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ResultScreenPage()));
+                    setState(() {
+                      counter--;
+                    });
+                    int Guess = int.parse(tfGuess.text);
+                    print(Guess);
+                    if (Guess == randomNumber) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ResultScreenPage(true)));
+                      return;
+                    }
+                    if (Guess > randomNumber) {
+                      tip = "decrease";
+                    } else {
+                      tip = "increase";
+                    }
+                    if (counter == 0) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ResultScreenPage(false)));
+                    }
+                    tfGuess.text = "";
                   },
                   child: Text("Guess THE Number")),
             )
