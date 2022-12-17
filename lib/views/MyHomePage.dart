@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guess_the_number/views/GuessScreenPage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -11,13 +12,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         title: Text("Mainpage"),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Guessing Game"),
+            Text("Guessing Game",
+                style: TextStyle(color: Colors.black54, fontSize: 36)),
+            Image.asset("images/zar_resim.png"),
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GuessScreenPage()));
+                  },
+                  child: Text("START THE GAME")),
+            )
           ],
         ),
       ),
